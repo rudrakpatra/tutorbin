@@ -1,0 +1,5 @@
+infile=example.tree
+outfile=output.txt
+l=100000
+mw=HKY
+n=10
