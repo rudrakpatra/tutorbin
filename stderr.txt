@@ -6,7 +6,7 @@ Institute of Evolutionary Biology, University of Edinburgh
 Originally developed at:
 Department of Zoology, University of Oxford
 
-Random number generator seed: 8240256836127797831
+Random number generator seed: -7817279717323577117
 
 Simulations of 4 taxa, 100000 nucleotides
   for 1 tree(s) with 10 dataset(s) per tree
@@ -20,4 +20,4 @@ Model = HKY: Hasegawa, Kishino & Yano (1985)
   with nucleotide frequencies equal.
 0%|__________|100%
   [..........]
-Time taken: 0.218461 seconds
+Time taken: 0.163482 seconds

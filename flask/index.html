@@ -1,11 +1,64 @@
 <html>
   <body>
-    <form action="http://localhost:5000/login" method="post">
-      <p>Enter Name:</p>
-
-      <p><input type="text" name="nm" /></p>
-
-      <p><input type="submit" value="submit" /></p>
+    <form
+      action="http://localhost:5000/login"
+      method="post"
+      onsubmit="validate(this)"
+    >
+      <script>
+        let validate = (e) => {
+          let infile = document.getElementById("infile").value;
+          let outfile = document.getElementById("outfile").value;
+          let l = document.getElementById("l").value;
+          let m = document.getElementById("m").value;
+          let n = document.getElementById("n").value;
+          if (outfile == "" || l == "" || m == "" || n == "") {
+            alert("Please fill all the fields");
+            return false;
+          }
+          return true;
+        };
+      </script>
+      <p>Enter Input File:</p>
+      <p><input type="file" onchange="showTree(this)" /></p>
+      <p>
+        <textarea id="input"></textarea>
+      </p>
+      <script>
+        let showTree = (e) => {
+          let input = document.getElementById("input");
+          const reader = new FileReader();
+          reader.onload = () => {
+            const text = reader.result;
+            input.value = text;
+          };
+          input.value = "";
+          reader.readAsText(e.files[0]);
+        };
+      </script>
+      <p>Enter Output File Name:</p>
+      <p><input required type="text" name="outfile" id="outfile" /></p>
+      <p>Enter SEQUENCE LENGTH:</p>
+      <p><input required type="number" name="l" id="l" /></p>
+      <p>Select Model:</p>
+      <p>
+        <select name="m" id="m">
+          <!-- HKY, F84, GTR, JTT, WAG, PAM, BLOSUM, MTREV, CPREV or GENERAL -->
+          <option value="HKY">HKY</option>
+          <option value="F84">F84</option>
+          <option value="GTR">GTR</option>
+          <option value="JTT">JTT</option>
+          <option value="WAG">WAG</option>
+          <option value="PAM">PAM</option>
+          <option value="BLOSUM">BLOSUM</option>
+          <option value="MTREV">MTREV</option>
+          <option value="CPREV">CPREV</option>
+          <option value="GENERAL">GENERAL</option>
+        </select>
+      </p>
+      <p>Enter NUMBER_OF_DATASETS:</p>
+      <p><input required type="number" name="n" id="n" /></p>
+      <p><input type="submit" value="run" /></p>
     </form>
   </body>
 </html>
