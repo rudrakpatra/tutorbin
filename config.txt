@@ -1,5 +1,5 @@
 infile=example.tree
 outfile=output.txt
 l=100000
-mw=HKY
+m=HKY
 n=10
