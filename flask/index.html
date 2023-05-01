@@ -1,9 +1,10 @@
 <html>
   <body>
     <form
-      action="http://localhost:5000/login"
+      action="http://localhost:5000/run"
       method="post"
       onsubmit="validate(this)"
+      enctype="multipart/form-data"
     >
       <script>
         let validate = (e) => {
@@ -12,7 +13,7 @@
           let l = document.getElementById("l").value;
           let m = document.getElementById("m").value;
           let n = document.getElementById("n").value;
-          if (outfile == "" || l == "" || m == "" || n == "") {
+          if ((infile = "" || outfile == "" || l == "" || m == "" || n == "")) {
             alert("Please fill all the fields");
             return false;
           }
@@ -20,26 +21,35 @@
         };
       </script>
       <p>Enter Input File:</p>
-      <p><input type="file" onchange="showTree(this)" /></p>
       <p>
-        <textarea id="input"></textarea>
+        <input type="file" name="file" required onchange="showTree(this)" />
       </p>
+      <p
+        id="input"
+        style="
+          outline: 1px solid black;
+          min-height: 1rem;
+          padding: 0.5rem;
+          max-height: 10rem;
+          overflow-y: auto;
+        "
+      ></p>
       <script>
         let showTree = (e) => {
           let input = document.getElementById("input");
           const reader = new FileReader();
           reader.onload = () => {
             const text = reader.result;
-            input.value = text;
+            input.innerText = text;
           };
-          input.value = "";
+          input.innerText = "";
           reader.readAsText(e.files[0]);
         };
       </script>
       <p>Enter Output File Name:</p>
       <p><input required type="text" name="outfile" id="outfile" /></p>
       <p>Enter SEQUENCE LENGTH:</p>
-      <p><input required type="number" name="l" id="l" /></p>
+      <p><input required type="number" name="l" id="l" min="0" /></p>
       <p>Select Model:</p>
       <p>
         <select name="m" id="m">
